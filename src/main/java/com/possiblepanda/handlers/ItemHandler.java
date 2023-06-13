@@ -6,7 +6,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
 
 import java.util.Collections;
 
@@ -31,9 +30,11 @@ public class ItemHandler {
         simpleBandage = item;
         // Crafting Recipe
 
-        ShapelessRecipe recipe = new ShapelessRecipe(NamespacedKey.minecraft("simple_bandage"), item);
-        recipe.addIngredient(4, Material.STRING);
-        recipe.addIngredient(1, Material.COOKED_BEEF);
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("simple_bandage"), item);
+        recipe.shape("XSX","SBS", "XSX");
+        recipe.setIngredient('X', Material.AIR);
+        recipe.setIngredient('S', Material.COOKED_BEEF);
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(simpleBandage));
         Bukkit.getServer().addRecipe(recipe);
 
     }

@@ -1,0 +1,4 @@
+com\possiblepanda\handlers\StarterHandler.class
+com\possiblepanda\commands\Menu.class
+com\possiblepanda\handlers\ItemHandler.class
+com\possiblepanda\commands\Fly.class

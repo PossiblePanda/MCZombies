@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mczombies:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mczombies_jar</output-path>
+    <root id="archive" name="mczombies.jar">
+      <element id="module-output" name="possiblepanda" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+    </root>
+  </artifact>
+</component>

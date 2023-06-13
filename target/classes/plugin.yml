@@ -1,0 +1,15 @@
+name: MCZombies
+version: '1.0.0'
+main: com.possiblepanda.MCZombies
+api-version: '1.20'
+prefix: MCZombies
+authors: [Possible Panda, MilkyG]
+commands:
+  fly:
+    description: Toggles flight for the sender.
+    usage: /fly
+    aliases: flight
+    permission: mczombies.commands.fly
+  menu:
+    description: Opens the menu.
+    usage: /mcz_menu

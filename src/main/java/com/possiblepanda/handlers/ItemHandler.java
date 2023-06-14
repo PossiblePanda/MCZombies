@@ -36,10 +36,10 @@ public class ItemHandler implements Listener {
         // Crafting Recipe
 
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("simple_bandage"), item);
-        recipe.shape("XSX","SBS", "XSX");
+        recipe.shape("XSX","SWS", "XSX");
         recipe.setIngredient('X', Material.AIR);
         recipe.setIngredient('S', Material.STRING);
-        recipe.setIngredient('B', Material.COOKED_BEEF);
+        recipe.setIngredient('W', Material.WHITE_WOOL);
         Bukkit.getServer().addRecipe(recipe);
     }
 
@@ -56,10 +56,9 @@ public class ItemHandler implements Listener {
         // Crafting Recipe
 
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("advanced_bandage"), item);
-        recipe.shape("XSX","SBS", "XSX");
-        recipe.setIngredient('X', Material.AIR);
+        recipe.shape("SSS","SBS", "SSS");
         recipe.setIngredient('S', Material.STRING);
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(advancedBandage));
+        recipe.setIngredient('B', new RecipeChoice.ExactChoice(simpleBandage));
         Bukkit.getServer().addRecipe(recipe);
 
     }

@@ -7,6 +7,7 @@ import com.possiblepanda.handlers.ItemUseHandler;
 import com.possiblepanda.handlers.StarterHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.meta.KnowledgeBookMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;

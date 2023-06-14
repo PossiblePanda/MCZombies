@@ -14,6 +14,7 @@ import java.util.Objects;
 
 public class ItemUseHandler implements Listener {
     FileConfiguration config = MCZombies.getPlugin(MCZombies.class).getConfig();
+    String prefix = config.getString("prefix");
     public ItemUseHandler(MCZombies plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
@@ -38,7 +39,7 @@ public class ItemUseHandler implements Listener {
                     player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
                 }
             } else {
-                player.sendMessage("§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
+                player.sendMessage(prefix + "§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
             }
         }
     }
@@ -57,13 +58,13 @@ public class ItemUseHandler implements Listener {
             if (config.getBoolean("advanced_bandage")) {
                 if (player.getHealth() < max_health - heal_amount) {
                     player.setHealth(player.getHealth() + heal_amount);
-                    player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
+                    player.sendMessage(prefix + "§7You have been healed for §a+" + heal_amount + ".");
                 } else {
                     player.setHealth(max_health);
                     player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
                 }
             } else {
-                player.sendMessage("§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
+                player.sendMessage(prefix + "§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
             }
         }
     }

@@ -20,11 +20,7 @@ public class StarterHandler implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        ItemStack item = new ItemStack(Material.COOKED_BEEF, 10);
         Inventory inv = player.getInventory();
-        inv.addItem(item);
-        ItemMeta meta = item.getItemMeta();
-        assert meta != null;
-        meta.setDisplayName("Simple Bandage");
+        inv.addItem(ItemHandler.simpleBandage);
     }
 }

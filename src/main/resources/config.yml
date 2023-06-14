@@ -2,3 +2,7 @@ starter_kit : true
 custom_recipes : true
 
 prefix : [MCZombies]
+
+# Disable or Enable items below
+simple_bandage : true
+advanced_bandage : true

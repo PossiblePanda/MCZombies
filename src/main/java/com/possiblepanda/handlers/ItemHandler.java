@@ -1,5 +1,7 @@
 package com.possiblepanda.handlers;
 
+import com.possiblepanda.MCZombies;
+import jdk.tools.jlink.plugin.Plugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameEvent;
 import org.bukkit.Material;
@@ -11,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.Collections;
 
@@ -19,8 +22,10 @@ public class ItemHandler implements Listener {
     public static ItemStack advancedBandage;
 
     public static void init(){
+
         createSimpleBandage();
         createAdvancedBandage();
+
     }
 
     private static void createSimpleBandage() {

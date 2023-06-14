@@ -14,12 +14,13 @@ public final class MCZombies extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        Bukkit.getLogger().info("MCZombies has successfully been started up!");
-
         saveDefaultConfig();
 
         boolean starter_kit = getConfig().getBoolean("starter_kit");
         boolean custom_recipes = getConfig().getBoolean("custom_recipes");
+        String prefix = getConfig().getString("prefix");
+
+        Bukkit.getLogger().info(prefix + "MCZombies has been started up!");
 
         Objects.requireNonNull(getCommand("fly")).setExecutor(new Fly());
         Objects.requireNonNull(getCommand("menu")).setExecutor(new Menu(this));
@@ -35,6 +36,7 @@ public final class MCZombies extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        Bukkit.getLogger().info("MCZombies has been shut down.");
+
+        Bukkit.getLogger().info("[MCZombies] MCZombies has been shut down.");
     }
 }

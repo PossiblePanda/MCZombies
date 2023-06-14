@@ -3,8 +3,10 @@ package com.possiblepanda;
 import com.possiblepanda.commands.Fly;
 import com.possiblepanda.commands.Menu;
 import com.possiblepanda.handlers.ItemHandler;
+import com.possiblepanda.handlers.ItemUseHandler;
 import com.possiblepanda.handlers.StarterHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -21,6 +23,8 @@ public final class MCZombies extends JavaPlugin {
         String prefix = getConfig().getString("prefix");
 
         Bukkit.getLogger().info(prefix + "MCZombies has been started up!");
+
+        new ItemUseHandler(this);
 
         Objects.requireNonNull(getCommand("fly")).setExecutor(new Fly());
         Objects.requireNonNull(getCommand("menu")).setExecutor(new Menu(this));

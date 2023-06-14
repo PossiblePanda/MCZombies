@@ -1,19 +1,24 @@
 package com.possiblepanda.handlers;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameEvent;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
 
-public class ItemHandler {
+public class ItemHandler implements Listener {
     public static ItemStack simpleBandage;
     public static ItemStack advancedBandage;
 
-    public static void init() {
+    public static void init(){
         createSimpleBandage();
         createAdvancedBandage();
     }
@@ -33,11 +38,11 @@ public class ItemHandler {
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("simple_bandage"), item);
         recipe.shape("XSX","SBS", "XSX");
         recipe.setIngredient('X', Material.AIR);
-        recipe.setIngredient('S', Material.COOKED_BEEF);
-        recipe.setIngredient('S', new RecipeChoice.ExactChoice(simpleBandage));
+        recipe.setIngredient('S', Material.STRING);
+        recipe.setIngredient('B', Material.COOKED_BEEF);
         Bukkit.getServer().addRecipe(recipe);
-
     }
+
     private static void createAdvancedBandage() {
         ItemStack item = new ItemStack(Material.COOKED_MUTTON, 1);
         ItemMeta meta = item.getItemMeta();

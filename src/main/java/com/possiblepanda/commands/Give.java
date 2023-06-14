@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Fly implements CommandExecutor {
+public class Give implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String [] args){
 
@@ -15,14 +15,6 @@ public class Fly implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-
-        if (player.getAllowFlight()) {
-            player.setAllowFlight(false);
-            player.sendMessage("Flying Disabled");
-        } else {
-            player.setAllowFlight(true);
-            player.sendMessage("Flying Enabled");
-        }
 
         return true;
     }

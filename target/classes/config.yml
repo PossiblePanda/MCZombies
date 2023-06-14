@@ -1,8 +1,12 @@
 starter_kit : true
 custom_recipes : true
 
-prefix : [MCZombies]
+prefix : "§7[MCZombies] "
 
 # Disable or Enable items below
 simple_bandage : true
 advanced_bandage : true
+grenade : true
+
+# Item Settings
+grenade_radius: 2

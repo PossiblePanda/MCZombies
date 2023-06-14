@@ -1,5 +1,5 @@
 com\possiblepanda\handlers\StarterHandler.class
-com\possiblepanda\commands\Menu.class
+com\possiblepanda\commands\Give.class
 com\possiblepanda\handlers\ItemHandler.class
 com\possiblepanda\handlers\ItemUseHandler.class
-com\possiblepanda\commands\Fly.class
+com\possiblepanda\MCZombies.class

@@ -1,13 +1,9 @@
 package com.possiblepanda;
 
-import com.possiblepanda.commands.Fly;
-import com.possiblepanda.commands.Menu;
 import com.possiblepanda.handlers.ItemHandler;
 import com.possiblepanda.handlers.ItemUseHandler;
 import com.possiblepanda.handlers.StarterHandler;
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
-import org.bukkit.inventory.meta.KnowledgeBookMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -27,8 +23,7 @@ public final class MCZombies extends JavaPlugin {
 
         new ItemUseHandler(this);
 
-        Objects.requireNonNull(getCommand("fly")).setExecutor(new Fly());
-        Objects.requireNonNull(getCommand("menu")).setExecutor(new Menu(this));
+//        Objects.requireNonNull(getCommand("fly")).setExecutor(new Fly());
 
         if (starter_kit) {
             new StarterHandler(this);

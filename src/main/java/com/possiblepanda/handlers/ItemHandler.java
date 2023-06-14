@@ -21,10 +21,13 @@ import java.util.Collections;
 public class ItemHandler implements Listener {
     public static ItemStack simpleBandage;
     public static ItemStack advancedBandage;
-    public static void init(){
+    public static ItemStack grenade;
+
+    public static void init() {
 
         createSimpleBandage();
         createAdvancedBandage();
+        createGrenade();
     }
 
     private static void createSimpleBandage() {
@@ -40,7 +43,7 @@ public class ItemHandler implements Listener {
         // Crafting Recipe
 
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("simple_bandage"), item);
-        recipe.shape("XSX","SWS", "XSX");
+        recipe.shape("XSX", "SWS", "XSX");
         recipe.setIngredient('X', Material.AIR);
         recipe.setIngredient('S', Material.STRING);
         recipe.setIngredient('W', Material.WHITE_WOOL);
@@ -60,10 +63,31 @@ public class ItemHandler implements Listener {
         // Crafting Recipe
 
         ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("advanced_bandage"), item);
-        recipe.shape("SSS","SBS", "SSS");
+        recipe.shape("SSS", "SBS", "SSS");
         recipe.setIngredient('S', Material.STRING);
         recipe.setIngredient('B', new RecipeChoice.ExactChoice(simpleBandage));
         Bukkit.getServer().addRecipe(recipe);
 
+    }
+
+    private static void createGrenade() {
+        ItemStack item = new ItemStack(Material.SPLASH_POTION, 1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Grenade");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        meta.setLore(Collections.singletonList("§7Throw to create fire wherever it lands."));
+        item.setItemMeta(meta);
+        grenade = item;
+        // Crafting Recipe
+
+        ShapelessRecipe recipe = new ShapelessRecipe(NamespacedKey.minecraft("grenade"), item);
+        recipe.addIngredient(Material.IRON_NUGGET);
+        recipe.addIngredient(Material.GUNPOWDER);
+        recipe.addIngredient(Material.GLASS_BOTTLE);
+
+        Bukkit.getServer().addRecipe(recipe);
     }
 }

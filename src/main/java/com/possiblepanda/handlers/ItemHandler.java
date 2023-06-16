@@ -1,20 +1,12 @@
 package com.possiblepanda.handlers;
 
-import com.possiblepanda.MCZombies;
-import jdk.tools.jlink.plugin.Plugin;
 import org.bukkit.Bukkit;
-import org.bukkit.GameEvent;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.meta.KnowledgeBookMeta;
 
 import java.util.Collections;
 
@@ -38,6 +30,7 @@ public class ItemHandler implements Listener {
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§a+5 §7 instant health."));
+        meta.setCustomModelData(1);
         item.setItemMeta(meta);
         simpleBandage = item;
         // Crafting Recipe
@@ -58,6 +51,7 @@ public class ItemHandler implements Listener {
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§a+10 §7 instant health."));
+        meta.setCustomModelData(1);
         item.setItemMeta(meta);
         advancedBandage = item;
         // Crafting Recipe
@@ -67,7 +61,6 @@ public class ItemHandler implements Listener {
         recipe.setIngredient('S', Material.STRING);
         recipe.setIngredient('B', new RecipeChoice.ExactChoice(simpleBandage));
         Bukkit.getServer().addRecipe(recipe);
-
     }
 
     private static void createGrenade() {
@@ -79,6 +72,7 @@ public class ItemHandler implements Listener {
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setLore(Collections.singletonList("§7Throw to create fire wherever it lands."));
+        meta.setCustomModelData(1);
         item.setItemMeta(meta);
         grenade = item;
         // Crafting Recipe

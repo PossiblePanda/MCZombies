@@ -9,8 +9,5 @@
         <module name="possiblepanda" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="possiblepanda" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

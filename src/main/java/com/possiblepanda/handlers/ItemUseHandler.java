@@ -12,18 +12,32 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.Potion;
 import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.Objects;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ItemUseHandler implements Listener {
     FileConfiguration config = MCZombies.getPlugin(MCZombies.class).getConfig();
     String prefix = config.getString("prefix");
     public ItemUseHandler(MCZombies plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
+
+    public void breakChance(int breakChance, ItemStack item, Player player, EquipmentSlot slot) {
+        final int number = ThreadLocalRandom.current().nextInt(1, 100);
+        Inventory inv = player.getInventory();
+        Bukkit.getLogger().info(Integer.toString(number));
+        if (number <= breakChance) {
+            item.setAmount(item.getAmount()-1);
+//            inv.setItem(test);
+        }
     }
 
     @EventHandler
@@ -33,7 +47,7 @@ public class ItemUseHandler implements Listener {
             Player player = event.getPlayer();
             event.setCancelled(true);
 
-            double heal_amount = 5;
+            double heal_amount = 3;
             double max_health = 20;
 //            player.setHealth(player.getHealth() + heal_amount);
 //            player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
@@ -41,9 +55,11 @@ public class ItemUseHandler implements Listener {
                 if (player.getHealth() < max_health - heal_amount) {
                     player.setHealth(player.getHealth() + heal_amount);
                     player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
+                    //breakChance(50, ItemHandler.simpleBandage, player, event.getHand());
                 } else {
                     player.setHealth(max_health);
                     player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
+                    //breakChance(50, ItemHandler.simpleBandage, player;
                 }
             } else {
                 player.sendMessage(prefix + "§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
@@ -58,7 +74,7 @@ public class ItemUseHandler implements Listener {
 
             event.setCancelled(true);
 
-            double heal_amount = 10;
+            double heal_amount = 7;
             double max_health = 20;
 //            player.setHealth(player.getHealth() + heal_amount);
 //            player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
@@ -66,9 +82,11 @@ public class ItemUseHandler implements Listener {
                 if (player.getHealth() < max_health - heal_amount) {
                     player.setHealth(player.getHealth() + heal_amount);
                     player.sendMessage(prefix + "§7You have been healed for §a+" + heal_amount + ".");
+                   // breakChance(35, ItemHandler.advancedBandage, player);
                 } else {
                     player.setHealth(max_health);
                     player.sendMessage("§7You have been healed for §a+" + heal_amount + ".");
+//                    breakChance(35, ItemHandler.advancedBandage, player);
                 }
             } else {
                 player.sendMessage(prefix + "§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");

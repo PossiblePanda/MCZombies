@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Give implements CommandExecutor {
+public class MCZ_Give implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String [] args){
 
@@ -15,7 +15,6 @@ public class Give implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-
         return true;
     }
 }

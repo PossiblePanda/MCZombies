@@ -94,6 +94,40 @@ public class ItemUseHandler implements Listener {
         }
     }
     @EventHandler
+    public void onTrailMixUse(PlayerItemConsumeEvent event) {
+        ItemStack item1 = event.getItem();
+        if (Objects.equals(Objects.requireNonNull(item1.getItemMeta()).getLore(), Objects.requireNonNull(ItemHandler.trailMix.getItemMeta()).getLore())) {
+            Player player = event.getPlayer();
+
+            event.setCancelled(true);
+
+            double food_amount = 3;
+            double max_hunger = 20;
+                if (player.getFoodLevel() < max_hunger - food_amount) {
+                    player.setFoodLevel((int) (player.getFoodLevel() + food_amount));
+                } else {
+                    player.setFoodLevel((int) max_hunger);
+                }
+        }
+    }
+    @EventHandler
+    public void onCerealUse(PlayerItemConsumeEvent event) {
+        ItemStack item1 = event.getItem();
+        if (Objects.equals(Objects.requireNonNull(item1.getItemMeta()).getLore(), Objects.requireNonNull(ItemHandler.cereal.getItemMeta()).getLore())) {
+            Player player = event.getPlayer();
+
+            event.setCancelled(true);
+
+            double food_amount = 6;
+            double max_hunger = 20;
+            if (player.getFoodLevel() < max_hunger - food_amount) {
+                player.setFoodLevel((int) (player.getFoodLevel() + food_amount));
+            } else {
+                player.setFoodLevel((int) max_hunger);
+            }
+        }
+    }
+    @EventHandler
     public void onGrenadeUse(PotionSplashEvent event) {
         ItemStack item1 = event.getPotion().getItem();
         ProjectileSource source = event.getEntity().getShooter();

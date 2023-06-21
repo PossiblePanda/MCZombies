@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,12 +15,18 @@ public class ItemHandler implements Listener {
     public static ItemStack simpleBandage;
     public static ItemStack advancedBandage;
     public static ItemStack grenade;
+    public static ItemStack trailMix;
+    public static ItemStack cereal;
+    public static ItemStack syringe;
 
     public static void init() {
 
         createSimpleBandage();
         createAdvancedBandage();
         createGrenade();
+        createTrailMix();
+        createCereal();
+        createSyringe();
     }
 
     private static void createSimpleBandage() {
@@ -81,6 +88,65 @@ public class ItemHandler implements Listener {
         recipe.addIngredient(Material.IRON_NUGGET);
         recipe.addIngredient(Material.GUNPOWDER);
         recipe.addIngredient(Material.GLASS_BOTTLE);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
+    private static void createTrailMix() {
+        ItemStack item = new ItemStack(Material.BREAD, 1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Trail mix");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setLore(Collections.singletonList("§7A healthy, portable snack!"));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        trailMix = item;
+        // Crafting Recipe
+
+        ShapelessRecipe recipe = new ShapelessRecipe(NamespacedKey.minecraft("trail_mix"), item);
+        recipe.addIngredient(Material.WHEAT_SEEDS);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
+    private static void createCereal() {
+        ItemStack item = new ItemStack(Material.BEETROOT_SOUP, 1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Cereal");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setLore(Collections.singletonList("§7A perfect solution for food, especially for mornings."));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        cereal = item;
+        // Crafting Recipe
+
+        ShapelessRecipe recipe = new ShapelessRecipe(NamespacedKey.minecraft("cereal"), item);
+        recipe.addIngredient(new RecipeChoice.ExactChoice(trailMix));
+        recipe.addIngredient(Material.BOWL);
+        recipe.addIngredient(Material.MILK_BUCKET);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
+    private static void createSyringe() {
+        ItemStack item = new ItemStack(Material.GLASS_BOTTLE, 1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Syringe");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setLore(Collections.singletonList("§7''single use only'' - MilkyG"));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        syringe = item;
+        // Crafting Recipe
+
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("syringe"), item);
+        recipe.shape("GAA", "AGA", "AAI");
+        recipe.setIngredient('G', Material.GLASS);
+        recipe.setIngredient('A', Material.AIR);
+        recipe.setIngredient('I', Material.IRON_INGOT);
 
         Bukkit.getServer().addRecipe(recipe);
     }

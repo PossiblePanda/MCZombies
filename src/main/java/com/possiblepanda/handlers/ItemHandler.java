@@ -36,7 +36,7 @@ public class ItemHandler implements Listener {
         meta.setDisplayName("Simple Bandage");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.setLore(Collections.singletonList("§a+5 §7 instant health."));
+        meta.setLore(Collections.singletonList("§a+5 §7instant health."));
         meta.setCustomModelData(1);
         item.setItemMeta(meta);
         simpleBandage = item;
@@ -57,7 +57,7 @@ public class ItemHandler implements Listener {
         meta.setDisplayName("Advanced Bandage");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        meta.setLore(Collections.singletonList("§a+10 §7 instant health."));
+        meta.setLore(Collections.singletonList("§a+10 §7instant health."));
         meta.setCustomModelData(1);
         item.setItemMeta(meta);
         advancedBandage = item;

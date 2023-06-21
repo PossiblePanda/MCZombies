@@ -1,20 +1,63 @@
 package com.possiblepanda.commands;
 
+import com.possiblepanda.MCZombies;
+import com.possiblepanda.handlers.ItemHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-public class MCZ_Give implements CommandExecutor {
+import java.util.*;
+
+public class MCZ_Give implements Listener, CommandExecutor {
+
+    public MCZ_Give(MCZombies plugin) {
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
+    @EventHandler
+    public void onInvClick(InventoryClickEvent event) {
+        if (!event.getView().getTitle().equals("MCZombies Give Menu")) {
+            return;
+        }
+        event.setCancelled(true);
+        Bukkit.getLogger().info("TEST");
+        event.getWhoClicked().getInventory().addItem(event.getCurrentItem());
+
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String [] args){
+
+        List<ItemStack> item_list = new ArrayList<ItemStack>();
+
+        // Very bad way of doing this, I suck at java so feel free to optimize if you want :)
+        item_list.add(ItemHandler.simpleBandage);
+        item_list.add(ItemHandler.advancedBandage);
+        item_list.add(ItemHandler.grenade);
+        item_list.add(ItemHandler.trailMix);
+        item_list.add(ItemHandler.cereal);
+        item_list.add(ItemHandler.syringe);
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("Only players can run this command!");
             return true;
         }
-
         Player player = (Player) sender;
+
+        Inventory inv = Bukkit.createInventory(player, 9*1, "MCZombies Give Menu");
+
+        for (ItemStack itemStack : item_list) {
+            inv.addItem(itemStack);
+        }
+
+        player.openInventory(inv);
+
         return true;
     }
 }

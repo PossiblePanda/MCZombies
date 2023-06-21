@@ -24,7 +24,7 @@ public final class MCZombies extends JavaPlugin {
 
         new ItemUseHandler(this);
 
-        Objects.requireNonNull(getCommand("mcz_give")).setExecutor(new MCZ_Give());
+        Objects.requireNonNull(getCommand("mcz_give")).setExecutor(new MCZ_Give(this));
 
         if (starter_kit) {
             new StarterHandler(this);

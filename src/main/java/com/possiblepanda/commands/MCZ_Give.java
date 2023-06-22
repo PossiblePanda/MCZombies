@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -27,8 +28,26 @@ public class MCZ_Give implements Listener, CommandExecutor {
         }
         event.setCancelled(true);
         Bukkit.getLogger().info("TEST");
-        event.getWhoClicked().getInventory().addItem(event.getCurrentItem());
-
+        if (event.getClick() == ClickType.LEFT) {
+            ItemStack curr_item = event.getCurrentItem();
+            event.getWhoClicked().setItemOnCursor(curr_item);
+        }
+        if (event.getClick() == ClickType.SHIFT_LEFT) {
+            ItemStack curr_item = event.getCurrentItem();
+            event.getWhoClicked().getInventory().addItem(curr_item);
+        }
+        if (event.getClick() == ClickType.RIGHT) {
+            ItemStack curr_item = event.getCurrentItem();
+            assert curr_item != null;
+            curr_item.setAmount(64);
+            event.getWhoClicked().setItemOnCursor(curr_item);
+        }
+        if (event.getClick() == ClickType.SHIFT_RIGHT) {
+            ItemStack curr_item = event.getCurrentItem();
+            assert curr_item != null;
+            curr_item.setAmount(64);
+            event.getWhoClicked().getInventory().addItem(curr_item);
+        }
     }
 
     @Override

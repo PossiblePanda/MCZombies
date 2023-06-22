@@ -31,6 +31,8 @@ public class MCZ_Give implements Listener, CommandExecutor {
         if (event.getClick() == ClickType.LEFT) {
             ItemStack curr_item = event.getCurrentItem();
             event.getWhoClicked().getInventory().addItem(curr_item);
+            assert curr_item != null;
+            event.getWhoClicked().sendMessage("§7You have recieved §a1x §c" + Objects.requireNonNull(curr_item.getItemMeta()).getDisplayName());
         }
 //        if (event.getClick() == ClickType.SHIFT_LEFT) {
 //            ItemStack curr_item = event.getCurrentItem();
@@ -41,6 +43,7 @@ public class MCZ_Give implements Listener, CommandExecutor {
             assert curr_item != null;
             curr_item.setAmount(64);
             event.getWhoClicked().getInventory().addItem(curr_item);
+            event.getWhoClicked().sendMessage("§7You have recieved §a64x §c" + Objects.requireNonNull(curr_item.getItemMeta()).getDisplayName());
         }
 //        if (event.getClick() == ClickType.SHIFT_RIGHT) {
 //            ItemStack curr_item = event.getCurrentItem();
@@ -69,7 +72,9 @@ public class MCZ_Give implements Listener, CommandExecutor {
         }
         Player player = (Player) sender;
 
-        Inventory inv = Bukkit.createInventory(player, 9*1, "MCZombies Give Menu");
+        int inv_size = 1;
+
+        Inventory inv = Bukkit.createInventory(player, 9*inv_size, "MCZombies Give Menu");
 
         for (ItemStack itemStack : item_list) {
             inv.addItem(itemStack);

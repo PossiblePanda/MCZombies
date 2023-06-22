@@ -32,7 +32,7 @@ public class MCZ_Give implements Listener, CommandExecutor {
             ItemStack curr_item = event.getCurrentItem();
             event.getWhoClicked().getInventory().addItem(curr_item);
             assert curr_item != null;
-            event.getWhoClicked().sendMessage("§7You have recieved §a1x §c" + Objects.requireNonNull(curr_item.getItemMeta()).getDisplayName());
+            event.getWhoClicked().sendMessage("§7You have recieved §a" + curr_item.getAmount() + "x§c " + Objects.requireNonNull(curr_item.getItemMeta()).getDisplayName());
         }
 //        if (event.getClick() == ClickType.SHIFT_LEFT) {
 //            ItemStack curr_item = event.getCurrentItem();
@@ -43,7 +43,7 @@ public class MCZ_Give implements Listener, CommandExecutor {
             assert curr_item != null;
             curr_item.setAmount(64);
             event.getWhoClicked().getInventory().addItem(curr_item);
-            event.getWhoClicked().sendMessage("§7You have recieved §a64x §c" + Objects.requireNonNull(curr_item.getItemMeta()).getDisplayName());
+            event.getWhoClicked().sendMessage("§7You have recieved §a" + curr_item.getAmount() + "x§c " + Objects.requireNonNull(curr_item.getItemMeta()).getDisplayName());
         }
 //        if (event.getClick() == ClickType.SHIFT_RIGHT) {
 //            ItemStack curr_item = event.getCurrentItem();

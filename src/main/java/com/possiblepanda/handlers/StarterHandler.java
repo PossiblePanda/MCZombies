@@ -19,9 +19,16 @@ public class StarterHandler implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
+        if (!event.getPlayer().hasPlayedBefore()) {
+            Player player = event.getPlayer();
 
-        Inventory inv = player.getInventory();
-        inv.addItem(ItemHandler.simpleBandage);
+            Inventory inv = player.getInventory();
+            ItemStack bandage = ItemHandler.simpleBandage;
+            bandage.setAmount(3);
+            inv.addItem(bandage);
+
+            ItemStack grenade = ItemHandler.grenade;
+            inv.addItem(grenade);
+        }
     }
 }

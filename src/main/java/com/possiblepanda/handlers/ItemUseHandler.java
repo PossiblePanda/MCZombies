@@ -4,8 +4,12 @@ import com.possiblepanda.MCZombies;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Fire;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
@@ -18,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.Potion;
 import org.bukkit.projectiles.ProjectileSource;
+import sun.jvm.hotspot.opto.Block_List;
 
 import java.util.Objects;
 import java.util.Random;
@@ -144,6 +149,25 @@ public class ItemUseHandler implements Listener {
 
                 if (config.getBoolean("grenade")) {
                     world.createExplosion(event.getPotion().getLocation(), config.getInt("grenade_radius"));
+                } else {
+                    player.sendMessage(prefix + "§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
+                }
+            }
+        }
+    }
+    @EventHandler
+    public void onMolotovCocktailUse(PotionSplashEvent event) {
+        ItemStack item1 = event.getPotion().getItem();
+        ProjectileSource source = event.getEntity().getShooter();
+        Player player = (Player) source;
+        assert player != null;
+        World world = player.getWorld();
+        if (item1.hasItemMeta()) {
+            if (Objects.equals(Objects.requireNonNull(event.getPotion().getItem().getItemMeta()).getLore(), Objects.requireNonNull(ItemHandler.molotovCocktail.getItemMeta()).getLore())) {
+                ItemMeta potion_meta = event.getPotion().getItem().getItemMeta();
+                event.setCancelled(true);
+                if (config.getBoolean("molotov")) {
+                    world.createExplosion(event.getPotion().getLocation(), config.getInt("molotov_radius"),true);
                 } else {
                     player.sendMessage(prefix + "§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
                 }

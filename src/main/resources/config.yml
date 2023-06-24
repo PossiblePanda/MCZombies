@@ -7,6 +7,7 @@ prefix : "§7[MCZombies] "
 simple_bandage : true
 advanced_bandage : true
 grenade : true
-
+molotov : true
 # Item Settings
-grenade_radius: 2
+grenade_radius: 3
+molotov_radius: 1

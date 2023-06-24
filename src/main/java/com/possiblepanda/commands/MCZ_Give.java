@@ -59,12 +59,14 @@ public class MCZ_Give implements Listener, CommandExecutor {
         List<ItemStack> item_list = new ArrayList<ItemStack>();
 
         // Very bad way of doing this, I suck at java so feel free to optimize if you want :)
+        item_list.add(ItemHandler.cloth);
         item_list.add(ItemHandler.simpleBandage);
         item_list.add(ItemHandler.advancedBandage);
         item_list.add(ItemHandler.grenade);
         item_list.add(ItemHandler.trailMix);
         item_list.add(ItemHandler.cereal);
         item_list.add(ItemHandler.syringe);
+        item_list.add(ItemHandler.molotovCocktail);
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("Only players can run this command!");

@@ -12,23 +12,43 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.Collections;
 
 public class ItemHandler implements Listener {
+    public static ItemStack cloth;
     public static ItemStack simpleBandage;
     public static ItemStack advancedBandage;
     public static ItemStack grenade;
     public static ItemStack trailMix;
     public static ItemStack cereal;
     public static ItemStack syringe;
+    public static ItemStack molotovCocktail;
 
     public static void init() {
-
+        createCloth();
         createSimpleBandage();
         createAdvancedBandage();
         createGrenade();
         createTrailMix();
         createCereal();
         createSyringe();
+        createMolotovCocktail();
     }
+    private static void createCloth() {
+        ItemStack item = new ItemStack(Material.PAPER, 1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Cloth");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setLore(Collections.singletonList("§7A useful material"));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        cloth = item;
+        // Crafting Recipe
 
+        ShapelessRecipe recipe = new ShapelessRecipe(NamespacedKey.minecraft("cloth"), item);
+        recipe.addIngredient(3,Material.STRING);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
     private static void createSimpleBandage() {
         ItemStack item = new ItemStack(Material.COOKED_BEEF, 1);
         ItemMeta meta = item.getItemMeta();
@@ -46,7 +66,7 @@ public class ItemHandler implements Listener {
         recipe.shape("XSX", "SWS", "XSX");
         recipe.setIngredient('X', Material.AIR);
         recipe.setIngredient('S', Material.STRING);
-        recipe.setIngredient('W', Material.WHITE_WOOL);
+        recipe.setIngredient('W', new RecipeChoice.ExactChoice(cloth));
         Bukkit.getServer().addRecipe(recipe);
     }
 
@@ -147,6 +167,27 @@ public class ItemHandler implements Listener {
         recipe.setIngredient('G', Material.GLASS);
         recipe.setIngredient('A', Material.AIR);
         recipe.setIngredient('I', Material.IRON_INGOT);
+
+        Bukkit.getServer().addRecipe(recipe);
+    }
+    private static void createMolotovCocktail() {
+        ItemStack item = new ItemStack(Material.SPLASH_POTION, 1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Molotov Cocktail");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        meta.setLore(Collections.singletonList("§7Boom baby!"));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        molotovCocktail = item;
+        // Crafting Recipe
+
+        ShapelessRecipe recipe = new ShapelessRecipe(NamespacedKey.minecraft("molotov_cocktail"), item);
+        recipe.addIngredient(Material.FLINT_AND_STEEL);
+        recipe.addIngredient(Material.GLASS_BOTTLE);
+        recipe.addIngredient(new RecipeChoice.ExactChoice(cloth));
 
         Bukkit.getServer().addRecipe(recipe);
     }

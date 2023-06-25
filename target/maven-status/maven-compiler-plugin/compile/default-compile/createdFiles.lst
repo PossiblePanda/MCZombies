@@ -2,4 +2,5 @@ com\possiblepanda\handlers\StarterHandler.class
 com\possiblepanda\commands\MCZ_Give.class
 com\possiblepanda\handlers\ItemHandler.class
 com\possiblepanda\handlers\ItemUseHandler.class
+com\possiblepanda\commands\MCZ_Recipes.class
 com\possiblepanda\MCZombies.class

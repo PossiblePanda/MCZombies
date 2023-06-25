@@ -56,20 +56,6 @@ public class MCZ_Give implements Listener, CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String [] args){
 
-        List<ItemStack> item_list = new ArrayList<ItemStack>();
-
-        // Very bad way of doing this, I suck at java so feel free to optimize if you want :)
-        item_list.add(ItemHandler.cloth);
-        item_list.add(ItemHandler.simpleBandage);
-        item_list.add(ItemHandler.advancedBandage);
-        item_list.add(ItemHandler.grenade);
-        item_list.add(ItemHandler.trailMix);
-        item_list.add(ItemHandler.cereal);
-        item_list.add(ItemHandler.syringe);
-        item_list.add(ItemHandler.molotovCocktail);
-        item_list.add(ItemHandler.steelNugget);
-        item_list.add(ItemHandler.steelIngot);
-
         if (!(sender instanceof Player)) {
             sender.sendMessage("Only players can run this command!");
             return true;
@@ -80,7 +66,7 @@ public class MCZ_Give implements Listener, CommandExecutor {
 
         Inventory inv = Bukkit.createInventory(player, 9*inv_size, "MCZombies Give Menu");
 
-        for (ItemStack itemStack : item_list) {
+        for (ItemStack itemStack : ItemHandler.item_list) {
             inv.addItem(itemStack);
         }
 

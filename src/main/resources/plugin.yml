@@ -8,5 +8,10 @@ commands:
   mcz_give:
     description: Gives a MCZombies item to the sender.
     usage: /mcz_give
-    aliases: ["/give_mcz", "/mczgive", "/givemcz"]
+    aliases: [/give_mcz, /mczgive, /givemcz]
     permission: mczombies.commands.give
+  mcz_recipes:
+    description: Shows recipes for MCZombies items.
+    usage: /mcz_recipes
+    aliases: [/mcz_recipes, mczrecipes]
+    permission: mczombies.commands.recipes

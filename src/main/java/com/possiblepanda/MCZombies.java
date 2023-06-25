@@ -1,6 +1,7 @@
 package com.possiblepanda;
 
 import com.possiblepanda.commands.MCZ_Give;
+import com.possiblepanda.commands.MCZ_Recipes;
 import com.possiblepanda.handlers.ItemHandler;
 import com.possiblepanda.handlers.ItemUseHandler;
 import com.possiblepanda.handlers.StarterHandler;
@@ -25,6 +26,8 @@ public final class MCZombies extends JavaPlugin {
         new ItemUseHandler(this);
 
         Objects.requireNonNull(getCommand("mcz_give")).setExecutor(new MCZ_Give(this));
+        Objects.requireNonNull(getCommand("mcz_recipes")).setExecutor(new MCZ_Recipes(this));
+
 
         if (starter_kit) {
             new StarterHandler(this);

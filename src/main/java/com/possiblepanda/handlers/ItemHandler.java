@@ -14,7 +14,9 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ItemHandler implements Listener {
     public static FileConfiguration config = MCZombies.getPlugin(MCZombies.class).getConfig();
@@ -31,6 +33,8 @@ public class ItemHandler implements Listener {
     public static ItemStack steelNugget;
     public static ItemStack steelIngot;
 
+    public static List<ItemStack> item_list = new ArrayList<ItemStack>();
+
     public static void init() {
         createCloth();
         createSimpleBandage();
@@ -42,6 +46,18 @@ public class ItemHandler implements Listener {
         createMolotovCocktail();
         createSteelNugget();
         createSteelIngot();
+
+        // Add items to here
+        item_list.add(cloth);
+        item_list.add(simpleBandage);
+        item_list.add(advancedBandage);
+        item_list.add(grenade);
+        item_list.add(trailMix);
+        item_list.add(cereal);
+        item_list.add(syringe);
+        item_list.add(molotovCocktail);
+        item_list.add(steelNugget);
+        item_list.add(steelIngot);
     }
     private static void createCloth() {
         ItemStack item = new ItemStack(Material.PAPER, 1);

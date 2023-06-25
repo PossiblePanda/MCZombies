@@ -1,18 +1,25 @@
 package com.possiblepanda.handlers;
 
+import com.possiblepanda.MCZombies;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Furnace;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 
 import java.util.Collections;
 
 public class ItemHandler implements Listener {
+    public static FileConfiguration config = MCZombies.getPlugin(MCZombies.class).getConfig();
+    String prefix = config.getString("prefix");
+
     public static ItemStack cloth;
     public static ItemStack simpleBandage;
     public static ItemStack advancedBandage;
@@ -40,7 +47,7 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.PAPER, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Cloth");
+        meta.setDisplayName("§bCloth");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§7A useful material"));
@@ -58,7 +65,7 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.COOKED_BEEF, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Simple Bandage");
+        meta.setDisplayName("§bSimple Bandage");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§a+5 §7instant health."));
@@ -79,7 +86,7 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.COOKED_MUTTON, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Advanced Bandage");
+        meta.setDisplayName("§bAdvanced Bandage");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§a+10 §7instant health."));
@@ -99,13 +106,14 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.SPLASH_POTION, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Grenade");
-        meta.addEnchant(Enchantment.DURABILITY, 1, false);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setDisplayName("§bGrenade");
+        meta.setLore(Collections.singletonList("§7Throw to create an explosion wherever it lands."));
         meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-        meta.setLore(Collections.singletonList("§7Throw to create fire wherever it lands."));
         meta.setCustomModelData(1);
         item.setItemMeta(meta);
+        PotionMeta pmeta = (PotionMeta) item.getItemMeta();
+        pmeta.setColor(Color.fromRGB(0,208,21));
+        item.setItemMeta(pmeta);
         grenade = item;
         // Crafting Recipe
 
@@ -120,7 +128,7 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.BREAD, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Trail mix");
+        meta.setDisplayName("§bTrail mix");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§7A healthy, portable snack!"));
@@ -138,7 +146,7 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.BEETROOT_SOUP, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Cereal");
+        meta.setDisplayName("§bCereal");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§7A perfect solution for food, especially for mornings."));
@@ -158,7 +166,7 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.GLASS_BOTTLE, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Syringe");
+        meta.setDisplayName("§bSyringe");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§7''single use only'' - MilkyG"));
@@ -179,13 +187,14 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.SPLASH_POTION, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Molotov Cocktail");
-        meta.addEnchant(Enchantment.DURABILITY, 1, false);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setDisplayName("§bMolotov Cocktail");
         meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
         meta.setLore(Collections.singletonList("§7Boom baby!"));
-        meta.setCustomModelData(1);
+        meta.setCustomModelData(2);
         item.setItemMeta(meta);
+        PotionMeta pmeta = (PotionMeta) item.getItemMeta();
+        pmeta.setColor(Color.fromRGB(255,96,3));
+        item.setItemMeta(pmeta);
         molotovCocktail = item;
         // Crafting Recipe
 
@@ -200,7 +209,7 @@ public class ItemHandler implements Listener {
         ItemStack item = new ItemStack(Material.IRON_NUGGET, 1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Steel Nugget");
+        meta.setDisplayName("§bSteel Nugget");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
@@ -209,15 +218,14 @@ public class ItemHandler implements Listener {
         item.setItemMeta(meta);
         steelNugget = item;
         // Furnace Recipe
-
-        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("steel_nugget"), item, new RecipeChoice.MaterialChoice(Material.IRON_NUGGET),1,1500);
+        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("steel_nugget"), item, new RecipeChoice.MaterialChoice(Material.IRON_NUGGET),1, config.getInt("steel_nugget_cook_time") * 20);
         Bukkit.getServer().addRecipe(recipe);
     }
     private static void createSteelIngot() {
         ItemStack item = new ItemStack(Material.IRON_INGOT,1);
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
-        meta.setDisplayName("Steel Ingot");
+        meta.setDisplayName("§bSteel Ingot");
         meta.addEnchant(Enchantment.DURABILITY, 1, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.setLore(Collections.singletonList("§7A metal material!"));

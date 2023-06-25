@@ -8,6 +8,10 @@ simple_bandage : true
 advanced_bandage : true
 grenade : true
 molotov : true
+
 # Item Settings
 grenade_radius: 3
 molotov_radius: 1
+
+# Recipe Settings
+steel_nugget_cook_time: 7.5 #In Seconds

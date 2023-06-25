@@ -3,6 +3,7 @@ package com.possiblepanda.handlers;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Furnace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.event.Listener;
@@ -20,6 +21,8 @@ public class ItemHandler implements Listener {
     public static ItemStack cereal;
     public static ItemStack syringe;
     public static ItemStack molotovCocktail;
+    public static ItemStack steelNugget;
+    public static ItemStack steelIngot;
 
     public static void init() {
         createCloth();
@@ -30,6 +33,8 @@ public class ItemHandler implements Listener {
         createCereal();
         createSyringe();
         createMolotovCocktail();
+        createSteelNugget();
+        createSteelIngot();
     }
     private static void createCloth() {
         ItemStack item = new ItemStack(Material.PAPER, 1);
@@ -189,6 +194,41 @@ public class ItemHandler implements Listener {
         recipe.addIngredient(Material.GLASS_BOTTLE);
         recipe.addIngredient(new RecipeChoice.ExactChoice(cloth));
 
+        Bukkit.getServer().addRecipe(recipe);
+    }
+    private static void createSteelNugget() {
+        ItemStack item = new ItemStack(Material.IRON_NUGGET, 1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Steel Nugget");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        meta.setLore(Collections.singletonList("§7Me when Nugget. Nugget."));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        steelNugget = item;
+        // Furnace Recipe
+
+        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("steel_nugget"), item, new RecipeChoice.MaterialChoice(Material.IRON_NUGGET),1,1500);
+        Bukkit.getServer().addRecipe(recipe);
+    }
+    private static void createSteelIngot() {
+        ItemStack item = new ItemStack(Material.IRON_INGOT,1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("Steel Ingot");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setLore(Collections.singletonList("§7A metal material!"));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        steelIngot = item;
+        // Crafting Recipe
+
+        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("steel_ingot"), item);
+        recipe.shape("SSS", "SSS", "SSS");
+        recipe.setIngredient('S', new RecipeChoice.ExactChoice(steelNugget));
         Bukkit.getServer().addRecipe(recipe);
     }
 }

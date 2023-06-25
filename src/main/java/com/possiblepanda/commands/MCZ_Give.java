@@ -67,6 +67,8 @@ public class MCZ_Give implements Listener, CommandExecutor {
         item_list.add(ItemHandler.cereal);
         item_list.add(ItemHandler.syringe);
         item_list.add(ItemHandler.molotovCocktail);
+        item_list.add(ItemHandler.steelNugget);
+        item_list.add(ItemHandler.steelIngot);
 
         if (!(sender instanceof Player)) {
             sender.sendMessage("Only players can run this command!");
@@ -74,7 +76,7 @@ public class MCZ_Give implements Listener, CommandExecutor {
         }
         Player player = (Player) sender;
 
-        int inv_size = 1;
+        int inv_size = 2;
 
         Inventory inv = Bukkit.createInventory(player, 9*inv_size, "MCZombies Give Menu");
 

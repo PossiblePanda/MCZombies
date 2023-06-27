@@ -147,10 +147,8 @@ public class ItemUseHandler implements Listener {
         Player player = (Player) source;
         assert player != null;
         World world = player.getWorld();
-        Bukkit.getLogger().info("First");
         if (item1.hasItemMeta()) {
             if (Objects.equals(Objects.requireNonNull(event.getPotion().getItem().getItemMeta()).getLore(), Objects.requireNonNull(ItemHandler.grenade.getItemMeta()).getLore())) {
-                Bukkit.getLogger().info("Seconds");
                 ItemMeta potion_meta = event.getPotion().getItem().getItemMeta();
 
                 event.setCancelled(true);
@@ -184,7 +182,7 @@ public class ItemUseHandler implements Listener {
     }
     @EventHandler
     public void onSpawnEggUse(PlayerInteractEvent event) {
-        if(event.getItem().getItemMeta().equals(ItemHandler.speedZombieSpawnEgg.getItemMeta())) {
+        if(Objects.equals(Objects.requireNonNull(event.getItem()).getItemMeta(), ItemHandler.speedZombieSpawnEgg.getItemMeta())) {
             event.setCancelled(true);
             Location loc;
             if (Objects.requireNonNull(event.getClickedBlock()).isPassable()) {

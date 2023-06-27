@@ -1,6 +1,5 @@
 # Starter kit includes 3 Simple Bandages and 1 Grenade.
 starter_kit : true
-custom_recipes : true
 
 prefix : "§7[MCZombies] "
 
@@ -15,4 +14,5 @@ grenade_radius: 3
 molotov_radius: 1
 
 # Recipe Settings
+custom_recipes : true
 steel_nugget_cook_time: 7.5 #In Seconds

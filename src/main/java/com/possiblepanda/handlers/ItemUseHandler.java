@@ -184,11 +184,7 @@ public class ItemUseHandler implements Listener {
     }
     @EventHandler
     public void onSpawnEggUse(PlayerInteractEvent event) {
-        event.getPlayer().sendMessage("hi");
-        event.getPlayer().sendMessage(event.getItem().getItemMeta().toString());
-        event.getPlayer().sendMessage(ItemHandler.speedZombieSpawnEgg.getItemMeta().toString());
         if(event.getItem().getItemMeta().equals(ItemHandler.speedZombieSpawnEgg.getItemMeta())) {
-            event.getPlayer().sendMessage("hi2 :O");
             event.setCancelled(true);
             Location loc;
             if (Objects.requireNonNull(event.getClickedBlock()).isPassable()) {

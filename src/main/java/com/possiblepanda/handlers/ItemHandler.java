@@ -32,6 +32,7 @@ public class ItemHandler implements Listener {
     public static ItemStack molotovCocktail;
     public static ItemStack steelNugget;
     public static ItemStack steelIngot;
+    public static ItemStack speedZombieSpawnEgg;
 
     public static List<ItemStack> item_list = new ArrayList<ItemStack>();
 
@@ -46,6 +47,8 @@ public class ItemHandler implements Listener {
         createMolotovCocktail();
         createSteelNugget();
         createSteelIngot();
+        createSpeedZombieSpawnEgg();
+
 
         // Add items to here
         item_list.add(cloth);
@@ -58,6 +61,7 @@ public class ItemHandler implements Listener {
         item_list.add(molotovCocktail);
         item_list.add(steelNugget);
         item_list.add(steelIngot);
+        item_list.add(speedZombieSpawnEgg);
     }
     private static void createCloth() {
         ItemStack item = new ItemStack(Material.PAPER, 1);
@@ -254,5 +258,17 @@ public class ItemHandler implements Listener {
         recipe.shape("SSS", "SSS", "SSS");
         recipe.setIngredient('S', new RecipeChoice.ExactChoice(steelNugget));
         Bukkit.getServer().addRecipe(recipe);
+    }
+    private static void createSpeedZombieSpawnEgg() {
+        ItemStack item = new ItemStack(Material.ZOMBIE_SPAWN_EGG,1);
+        ItemMeta meta = item.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName("§bSpeed Zombie Spawn Egg");
+        meta.addEnchant(Enchantment.DURABILITY, 1, false);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        meta.setLore(Collections.singletonList("§7Spawns a Speed Zombie"));
+        meta.setCustomModelData(1);
+        item.setItemMeta(meta);
+        speedZombieSpawnEgg = item;
     }
 }

@@ -1,7 +1,9 @@
 package com.possiblepanda.handlers;
 
 import com.possiblepanda.MCZombies;
+import com.possiblepanda.components.CustomMob;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
@@ -15,12 +17,15 @@ import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.Potion;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 import sun.jvm.hotspot.opto.Block_List;
 
@@ -110,8 +115,10 @@ public class ItemUseHandler implements Listener {
             double max_hunger = 20;
                 if (player.getFoodLevel() < max_hunger - food_amount) {
                     player.setFoodLevel((int) (player.getFoodLevel() + food_amount));
+                    CustomMob.SPEED_ZOMBIE.spawn(player.getLocation());
                 } else {
                     player.setFoodLevel((int) max_hunger);
+                    CustomMob.SPEED_ZOMBIE.spawn(player.getLocation());
                 }
         }
     }
@@ -119,6 +126,7 @@ public class ItemUseHandler implements Listener {
     public void onCerealUse(PlayerItemConsumeEvent event) {
         ItemStack item1 = event.getItem();
         if (Objects.equals(Objects.requireNonNull(item1.getItemMeta()).getLore(), Objects.requireNonNull(ItemHandler.cereal.getItemMeta()).getLore())) {
+            event.setCancelled(true);
             Player player = event.getPlayer();
 
             event.setCancelled(true);
@@ -172,6 +180,24 @@ public class ItemUseHandler implements Listener {
                     player.sendMessage(prefix + "§cThis item is disabled on this server, if you believe this is a mistake, tell the owner of the server to enable it.");
                 }
             }
+        }
+    }
+    @EventHandler
+    public void onSpawnEggUse(PlayerInteractEvent event) {
+        event.getPlayer().sendMessage("hi");
+        event.getPlayer().sendMessage(event.getItem().getItemMeta().getLore().toString());
+        event.getPlayer().sendMessage(ItemHandler.speedZombieSpawnEgg.getItemMeta().getLore().toString());
+        if(event.getItem().getItemMeta().getLore() == ItemHandler.speedZombieSpawnEgg.getItemMeta().getLore()) {
+            event.getPlayer().sendMessage("hi2 :O");
+            event.setCancelled(true);
+            Location loc;
+            if (Objects.requireNonNull(event.getClickedBlock()).isPassable()) {
+                loc = event.getClickedBlock().getLocation().add(0.5,0,0.5);
+            }
+            else {
+                loc = event.getClickedBlock().getRelative(event.getBlockFace()).getLocation().add(0.5,0,0.5);
+            }
+            CustomMob.SPEED_ZOMBIE.spawn(loc);
         }
     }
 }

@@ -6,6 +6,8 @@ import com.possiblepanda.handlers.ItemHandler;
 import com.possiblepanda.handlers.ItemUseHandler;
 import com.possiblepanda.handlers.StarterHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -42,5 +44,10 @@ public final class MCZombies extends JavaPlugin {
         // Plugin shutdown logic
 
         Bukkit.getLogger().info("[MCZombies] MCZombies has been shut down.");
+    }
+
+    @EventHandler
+    private void onJoin(PlayerJoinEvent event) {
+
     }
 }

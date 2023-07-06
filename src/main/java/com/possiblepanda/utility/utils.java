@@ -1,4 +1,4 @@
-package com.possiblepanda;
+package com.possiblepanda.utility;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

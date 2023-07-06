@@ -14,10 +14,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.*;
+import java.util.Objects;
 
-public class MCZ_Give implements Listener, CommandExecutor {
-    public MCZ_Give(MCZombies plugin) {
+public class MCZ_Menu implements Listener, CommandExecutor {
+    public MCZ_Menu(MCZombies plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
     @EventHandler
@@ -65,9 +65,7 @@ public class MCZ_Give implements Listener, CommandExecutor {
 
         Inventory inv = Bukkit.createInventory(player, 9*inv_size, "MCZombies Give Menu");
 
-        for (ItemStack itemStack : ItemHandler.item_list) {
-            inv.addItem(itemStack);
-        }
+        inv.addItem();
 
         player.openInventory(inv);
 
